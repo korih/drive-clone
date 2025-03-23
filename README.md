@@ -5,6 +5,7 @@
 - [ ] Setup data models
 - [ ] Add auth
 - [ ] Add file upload
+- [ ] add sandbox to only work in dev environment? or just remove it
 
 ### Setup For database
 Connected database to singlestore, setup by changing stuff in the .env file, so we can connect to database.
@@ -16,3 +17,4 @@ Then went and added it to env.js for easy access. Modified the drizzle config fo
 - manually insert examples
 - render them in UI
 - push and make sure that it works
+

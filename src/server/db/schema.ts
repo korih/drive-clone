@@ -1,3 +1,6 @@
+// so we can't import these types onto frontend
+import "server-only";
+
 import { int, bigint, text, index, singlestoreTableCreator } from "drizzle-orm/singlestore-core"
 
 export const createTable = singlestoreTableCreator((name) => `drive-tutorial_${name}`)
