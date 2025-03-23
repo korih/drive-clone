@@ -43,7 +43,7 @@ function PostHogPageView() {
     } else {
       posthog.reset();
     }
-  }, [posthog, userInfo.user])
+  }, [posthog, userInfo.user, user.userId])
 
   // Track pageviews
   useEffect(() => {
