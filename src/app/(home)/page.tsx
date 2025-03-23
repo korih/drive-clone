@@ -17,9 +17,9 @@ export default function Home() {
         </div>
       </header>
       <main className="flex-1">
-        <section className="w-full py-12 md:py-24 lg:py-32">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+        <section className="w-full py-12 md:py-24 lg:py-32 flex items-center justify-center">
+          <div className="container flex flex-col items-center justify-center px-4 md:px-6 text-center">
+            <div className="space-y-4">
               <div className="space-y-2">
                 <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
                   Simple & Secure File Storage
@@ -28,19 +28,19 @@ export default function Home() {
                   Store, share, and access your files from anywhere. Your data, your control.
                 </p>
               </div>
-              <div className="flex flex-col gap-2 sm:flex-row">
-                <form 
-                action={async () => {
-                  "use server";
+              <div className="flex flex-col items-center justify-center gap-2 sm:flex-row">
+                <form
+                  action={async () => {
+                    "use server";
 
-                  const session = await auth()
+                    const session = await auth()
 
-                  if (!session.userId) {
-                    return redirect("/sign-in")
-                  }
+                    if (!session.userId) {
+                      return redirect("/sign-in")
+                    }
 
-                  return redirect("/drive")
-                }}
+                    return redirect("/drive")
+                  }}
                 >
                   <Button
                     size="lg"
@@ -55,7 +55,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="w-full bg-muted/50 py-12 md:py-24 lg:py-32">
+        <section className="w-full bg-muted/50 py-12 md:py-24 lg:py-32  flex items-center justify-center">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
@@ -101,7 +101,7 @@ export default function Home() {
         <div className="container flex flex-col items-center justify-between gap-4 px-4 md:flex-row md:px-6">
           <div className="flex items-center gap-2 text-sm">
             <Cloud className="h-4 w-4" />
-            <span className="font-semibold">FileVault</span> © 2024
+            <span className="font-semibold">Kori</span> © 2025
           </div>
           <nav className="flex gap-4 text-sm text-muted-foreground">
             <Link href="#">Privacy</Link>
