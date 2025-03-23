@@ -104,9 +104,11 @@ export default function Home() {
             <span className="font-semibold">Kori</span> © 2025
           </div>
           <nav className="flex gap-4 text-sm text-muted-foreground">
+            {/*
             <Link href="#">Privacy</Link>
             <Link href="#">Terms</Link>
             <Link href="#">Contact</Link>
+            */}
           </nav>
         </div>
       </footer>
