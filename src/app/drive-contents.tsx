@@ -5,6 +5,9 @@ import { FileRow, FolderRow } from "./file-row"
 import type { files, folders } from "~/server/db/schema"
 import Link from "next/link"
 import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs"
+import { UploadButton } from "~/components/uploadthing"
+import { twMerge } from "tailwind-merge"
+import { useRouter } from "next/navigation"
 
 export default function DriveContents(props: {
   files: typeof files.$inferSelect[];
@@ -12,9 +15,7 @@ export default function DriveContents(props: {
   parents: typeof folders.$inferSelect[];
 }) {
 
-  const handleUpload = () => {
-    alert("Upload functionality would be implemented here")
-  }
+  const navigate = useRouter();
 
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100 p-8">
@@ -40,7 +41,7 @@ export default function DriveContents(props: {
             ))}
           </div>
           <div>
-          <SignedOut>
+            <SignedOut>
               <SignInButton />
               <SignUpButton />
             </SignedOut>
@@ -67,6 +68,13 @@ export default function DriveContents(props: {
               <FileRow key={file.id} file={file} />
             ))}
           </ul>
+        </div>
+        <div className="bg-black">
+          <UploadButton
+            endpoint="imageUploader"
+            onClientUploadComplete={() => { navigate.refresh() }}
+            config={{ cn: twMerge }}
+          />
         </div>
       </div>
     </div>
