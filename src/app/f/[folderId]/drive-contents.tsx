@@ -24,7 +24,7 @@ export default function DriveContents(props: {
         <div className="flex justify-between items-center mb-6">
           <div className="flex items-center">
             <Link
-              href={`/f/1`}
+              href={`/f/${props.currentFolderId}`}
               className="text-gray-300 hover:text-white mr-2"
             >
               My Drive
@@ -33,7 +33,7 @@ export default function DriveContents(props: {
               <div key={folder.id} className="flex items-center">
                 <ChevronRight className="mx-2 text-gray-500" size={16} />
                 <Link
-                  href={`/f/1`}
+                  href={`/f/${folder.id}`}
                   className="text-gray-300 hover:text-white"
                 >
                   {folder.name}
