@@ -12,6 +12,7 @@ export default async function DrivePage() {
   const rootFolder = await QUERIES.getRootFolderForUser(session.userId)
 
   if (!rootFolder) {
+    // TODO: just going to leave this so no one else can make an account
     return redirect("/drive/create-root-folder")
   }
 
