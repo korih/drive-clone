@@ -1,6 +1,6 @@
 "use client"
 
-import { Upload, ChevronRight } from "lucide-react"
+import { ChevronRight } from "lucide-react"
 import { FileRow, FolderRow } from "./file-row"
 import type { files, folders } from "~/server/db/schema"
 import Link from "next/link"

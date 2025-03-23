@@ -4,7 +4,6 @@ import { db } from "~/server/db";
 import {
   files as filesSchema,
   folders as foldersSchema,
-  type DB_FileType,
 } from "~/server/db/schema";
 import { eq, and, isNull } from "drizzle-orm";
 

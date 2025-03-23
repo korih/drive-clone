@@ -7,7 +7,6 @@ import { usePostHog } from 'posthog-js/react'
 import posthog from 'posthog-js'
 import { PostHogProvider as PHProvider } from 'posthog-js/react'
 import { useAuth, useUser } from "@clerk/nextjs"
-import { userInfo } from "os"
 
 export function PostHogProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
