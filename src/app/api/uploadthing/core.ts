@@ -40,7 +40,7 @@ export const ourFileRouter = {
       }
 
       // Whatever is returned here is accessible in onUploadComplete as `metadata`
-      return { userId: user.userId };
+      return { userId: user.userId, parentId: input.folderId };
     })
     .onUploadComplete(async ({ metadata, file }) => {
 
@@ -50,7 +50,7 @@ export const ourFileRouter = {
           name: file.name,
           size: file.size,
           url: file.ufsUrl,
-          parent: 0,
+          parent: metadata.parentId,
         },
         userId: metadata.userId
       })

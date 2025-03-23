@@ -13,6 +13,7 @@ export default function DriveContents(props: {
   files: typeof files.$inferSelect[];
   folders: typeof folders.$inferSelect[];
   parents: typeof folders.$inferSelect[];
+  currentFolderId: number;
 }) {
 
   const navigate = useRouter();
@@ -73,6 +74,9 @@ export default function DriveContents(props: {
           <UploadButton
             endpoint="imageUploader"
             onClientUploadComplete={() => { navigate.refresh() }}
+            input={{
+              folderId: props.currentFolderId,
+            }}
             config={{ cn: twMerge }}
           />
         </div>
