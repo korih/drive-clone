@@ -1,7 +1,8 @@
 import React from 'react'
-import { db } from "~/server/db"
-import { mockFolders, mockFiles } from '~/lib/mock-data'
-import { files, folders } from '~/server/db/schema';
+import { auth } from '@clerk/nextjs/server';
+import { db } from '~/server/db';
+import { folders } from '~/server/db/schema';
+import { mockFolders } from '~/lib/mock-data';
 
 export default function SandboxPage() {
   return (
@@ -10,23 +11,23 @@ export default function SandboxPage() {
       <form action={async () => {
         "use server";
 
-        const folderInsert = await db.insert(folders).values(
-          mockFolders.map((folder, index) => ({
-            id: index + 1,
-            name: folder.name,
-            parent: index !== 0 ? 1 : 1,
-          })), );
+        const user = await auth();
+        if (!user.userId) {
+          throw new Error("User not authorized")
+        }
 
-        const fileInsert = await db.insert(files).values(mockFiles.map((file, index) => ({
-          id: index + 1,
-          name: file.name,
-          size: 50000,
-          url: file.url,
-          parent: (index % 3) + 1,
-        })))
+        const root = await db.insert(folders).values({
+          name: "root",
+          ownerId: user.userId,
+          parent: null,
+        }).$returningId();
 
-        console.log(folderInsert)
-        console.log(fileInsert)
+        const insert_foldres = mockFolders.map((folder) => ({
+          name: folder.name,
+          ownerId: user.userId,
+          parent: root[0]!.id,
+        }))
+        await db.insert(folders).values(insert_foldres)
 
       }}>
         <button type="submit">CLICK ME</button>

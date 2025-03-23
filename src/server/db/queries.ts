@@ -20,6 +20,7 @@ export const QUERIES = {
         .where(eq(foldersSchema.id, currentId));
 
       if (!folder[0]) {
+        console.log("HERE:", currentId)
         throw new Error("Parent folder not found");
       }
       parents.unshift(folder[0]);
@@ -39,12 +40,21 @@ export const QUERIES = {
       .where(eq(foldersSchema.parent, folderId));
   },
 
+  getFolderById: async function(folderId: number) {
+    const folder = await db
+      .select()
+      .from(foldersSchema)
+      .where(eq(foldersSchema.parent, folderId));
+    return folder[0]
+  },
+
   getFiles: async function(folderId: number) {
     return db
       .select()
       .from(filesSchema)
       .where(eq(filesSchema.parent, folderId));
-  }
+  },
+
 }
 
 export const MUTATIONS = {
