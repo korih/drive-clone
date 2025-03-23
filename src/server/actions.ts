@@ -4,7 +4,6 @@ import { and, eq } from "drizzle-orm";
 import { db } from "./db";
 import { files } from "./db/schema";
 import { auth } from "@clerk/nextjs/server";
-import { utapi } from "~/server/uploadthing.ts";
 import { cookies } from "next/headers";
 
 export async function deleteFile(fileId: number) {
