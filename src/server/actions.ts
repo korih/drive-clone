@@ -5,6 +5,9 @@ import { db } from "./db";
 import { files } from "./db/schema";
 import { auth } from "@clerk/nextjs/server";
 import { cookies } from "next/headers";
+import { UTApi } from "uploadthing/server";
+
+const utapi = new UTApi()
 
 export async function deleteFile(fileId: number) {
   const userSession = await auth();
@@ -24,7 +27,8 @@ export async function deleteFile(fileId: number) {
   }
 
   // TODO: idk why this doesn't work
-  // await utapi.deleteFiles([file.url.replace("https://utfs.io/f/", "")])
+  await utapi.deleteFiles([file.url.replace("https://utfs.io/f/", "")])
+
 
   await db.delete(files).where(eq(files.id, fileId));
 
@@ -32,5 +36,5 @@ export async function deleteFile(fileId: number) {
 
   c.set("force-refresh", JSON.stringify(Math.random()));
 
-  return { success: true}
+  return { success: true }
 }
