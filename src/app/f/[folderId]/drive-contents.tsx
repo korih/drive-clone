@@ -1,5 +1,6 @@
 "use client"
 
+import "@uploadthing/react/styles.css";
 import { ChevronRight } from "lucide-react"
 import { FileRow, FolderRow } from "./file-row"
 import type { files, folders } from "~/server/db/schema"
@@ -51,7 +52,7 @@ export default function DriveContents(props: {
             </SignedIn>
           </div>
         </div>
-        <div className="bg-gray-800 rounded-lg shadow-xl">
+        <div className="bg-gray-800 rounded-lg shadow-xl mb-6">
           <div className="px-6 py-4 border-b border-gray-700">
             <div className="grid grid-cols-12 gap-4 text-sm font-medium text-gray-400">
               <div className="col-span-6">Name</div>
@@ -70,7 +71,7 @@ export default function DriveContents(props: {
             ))}
           </ul>
         </div>
-        <div className="bg-black">
+        <div className="mt-6">
           <UploadButton
             endpoint="driveUploader"
             onClientUploadComplete={() => { navigate.refresh() }}
