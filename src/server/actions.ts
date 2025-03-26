@@ -26,15 +26,19 @@ export async function deleteFile(fileId: number) {
     return { error: "Unauthorized" }
   }
 
-  // TODO: idk why this doesn't work
-  await utapi.deleteFiles([file.url.replace("https://utfs.io/f/", "")])
+
+  const cleanedString: string | undefined = file.url.split("/").pop()
 
 
+  if (!cleanedString) {
+    return { error: "File not found" }
+  }
+
+  await utapi.deleteFiles([cleanedString])
   await db.delete(files).where(eq(files.id, fileId));
-
   const c = await cookies();
-
   c.set("force-refresh", JSON.stringify(Math.random()));
 
   return { success: true }
+
 }

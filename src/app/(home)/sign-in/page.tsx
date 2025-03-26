@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { SignInButton } from "@clerk/nextjs";
 
 export default function SignIn() {
+
   return (
     <div className="flex min-h-screen flex-col">
       <header className="container flex h-16 items-center justify-between px-4 md:px-6">
@@ -40,7 +41,7 @@ export default function SignIn() {
                     return redirect("/drive")
                   }}
                 >
-                <SignInButton forceRedirectUrl={"/drive"} />
+                  <SignInButton forceRedirectUrl={"/drive"} />
 
                 </form>
               </div>

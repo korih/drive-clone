@@ -5,7 +5,7 @@ import {
   files as filesSchema,
   folders as foldersSchema,
 } from "~/server/db/schema";
-import { eq, and, isNull } from "drizzle-orm";
+import { eq, and, isNull, count } from "drizzle-orm";
 
 export const QUERIES = {
 
@@ -59,7 +59,7 @@ export const QUERIES = {
         )
       )
 
-      return folder[0]
+    return folder[0]
   },
 
   getFiles: async function(folderId: number) {
@@ -68,6 +68,13 @@ export const QUERIES = {
       .from(filesSchema)
       .where(eq(filesSchema.parent, folderId))
       .orderBy(filesSchema.id);
+  },
+
+  getFileCount: async function(userId: string) {
+    return db
+      .select({ count: count() })
+      .from(filesSchema)
+      .where(eq(filesSchema.ownerId, userId))
   },
 
 }

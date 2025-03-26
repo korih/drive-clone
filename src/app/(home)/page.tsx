@@ -1,6 +1,5 @@
 import Link from "next/link"
 import { ArrowRight, Cloud, FileLock2, HardDrive, Users } from "lucide-react"
-
 import { Button } from "~/components/ui/button"
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
@@ -36,7 +35,7 @@ export default function Home() {
                     const session = await auth()
 
                     if (!session.userId) {
-                      return redirect("/sign-in")
+                      return redirect("/drive")
                     }
 
                     return redirect("/drive")
@@ -73,7 +72,7 @@ export default function Home() {
                   </div>
                   <h3 className="text-lg font-bold">Unlimited Storage</h3>
                   <p className="text-muted-foreground">
-                    Store all your important files with flexible storage options and plans to meet your needs.
+                    Store important files
                   </p>
                 </div>
                 <div className="flex flex-col items-center space-y-3">

@@ -16,8 +16,8 @@ export const ourFileRouter = {
        * For full list of options and defaults, see the File Route API reference
        * @see https://docs.uploadthing.com/file-routes#route-config
        */
-      maxFileSize: "128MB",
-      maxFileCount: 10,
+      maxFileSize: "1MB",
+      maxFileCount: 1,
     },
   }).input(z.object({
     folderId: z.number(),
@@ -37,6 +37,14 @@ export const ourFileRouter = {
 
       if (folder.ownerId !== user.userId) {
         throw new UploadThingError("Unauthorized")
+      }
+
+      const numFiles: any = await QUERIES.getFileCount(user.userId);
+
+      console.log(numFiles)
+
+      if (numFiles[0]?.count > 10) {
+        throw new UploadThingError("File Count Limit Reached")
       }
 
       // Whatever is returned here is accessible in onUploadComplete as `metadata`
