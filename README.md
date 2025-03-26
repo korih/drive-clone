@@ -17,7 +17,9 @@ Connected database to singlestore, setup by changing stuff in the .env file, so 
 Then went and added it to env.js for easy access. Modified the drizzle config for ORM setup, and modified schema for simple testing if it works.
 
 #### TODO from here
-- Work on frontend components to make them nicer
-- Fix bug where you can't delete files
-- Add caps on other users, so someone else can join and test it but not really do anything else
+- [x] Work on frontend components to make them nicer
+- [x] Fix bug where you can't delete files
+- [x] Add caps on other users, so someone else can join and test it but not really do anything else
+- [ ] Fix Styling
+- [ ] Test it a bit more
 
